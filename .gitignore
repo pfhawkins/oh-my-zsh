@@ -3,11 +3,9 @@ log/.zsh_history
 projects.zsh
 *.zsh~
 custom/*
-<<<<<<< HEAD
 !custom/example.zsh
-=======
 !custom/example
 !custom/example.zsh
-cache
 *.swp
->>>>>>> upstream/master
+!custom/example.zshcache
+cache/

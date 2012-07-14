@@ -10,7 +10,7 @@ compdef _git gup=git-fetch
 alias gp='git push'
 alias gd='git diff --color'
 compdef _git gp=git-push
-gdv() { git-diff -w "$@" | view - }
+gdv() { git diff -w "$@" | view - }
 compdef _git gdv=git-diff
 alias gc='git commit -v'
 compdef _git gc=git-commit
@@ -18,6 +18,7 @@ alias gca='git commit -v -a'
 compdef _git gca=git-commit
 alias gco='git checkout'
 compdef _git gco=git-checkout
+alias gcm='git checkout master'
 alias gb='git branch'
 compdef _git gb=git-branch
 alias gba='git branch -a'
@@ -36,6 +37,8 @@ alias ga='git add'
 compdef _git ga=git-add
 alias gm='git merge'
 compdef _git gm=git-merge
+alias grh='git reset HEAD'
+alias grhh='git reset HEAD --hard'
 
 # Git and svn mix
 alias git-svn-dcommit-push='git svn dcommit && git push github master:svntrunk'
@@ -50,6 +53,12 @@ alias gsd='git svn dcommit'
 function current_branch() {
   ref=$(git symbolic-ref HEAD 2> /dev/null) || return
   echo ${ref#refs/heads/}
+}
+
+function current_repository() {
+
+  ref=$(git symbolic-ref HEAD 2> /dev/null) || return
+  echo $(git remote -v | cut -d':' -f 2)
 }
 
 # these aliases take advantage of the previous function
